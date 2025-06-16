@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Details - Snake Games Collection</title>
+    <meta name="description" content="Play snake games online. Find detailed information about each game, including gameplay, features, and more.">
+    <meta name="keywords" content="snake games, game details, online games, browser games">
+    <meta name="author" content="Snake Games Collection">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://snakegame.top/game">
+    <meta property="og:title" content="Game Details - Snake Games Collection">
+    <meta property="og:description" content="Play snake games online. Find detailed information about each game, including gameplay, features, and more.">
+    <meta property="og:image" content="../assets/images/og-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://snakegame.top/game">
+    <meta property="twitter:title" content="Game Details - Snake Games Collection">
+    <meta property="twitter:description" content="Play snake games online. Find detailed information about each game, including gameplay, features, and more.">
+    <meta property="twitter:image" content="../assets/images/og-image.jpg">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#007AFF',
+                        secondary: '#5856D6',
+                        success: '#34C759',
+                        danger: '#FF3B30',
+                        warning: '#FF9500',
+                        info: '#5856D6',
+                        light: '#F2F2F7',
+                        dark: '#1C1C1E'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="../assets/css/custom.css">
+    <!-- Add aspect ratio styles -->
+    <style>
+        .aspect-w-16 {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        }
+        .aspect-w-16 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 0;
+                margin: 0 -1rem; /* 负边距让容器更宽 */
+                width: calc(100% + 2rem); /* 补偿负边距 */
+            }
+            .game-container > div {
+                padding: 0; /* 移除内边距以获得更多空间 */
+            }
+            .aspect-w-16 {
+                padding-bottom: 0; /* 移除底部padding */
+                height: 90vh; /* 增加高度到90vh */
+                margin: 0;
+                background: #f8f9fa;
+                border-radius: 0; /* 移除圆角以获得更大显示区域 */
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .aspect-w-16 iframe {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100vw; /* 使用视口宽度 */
+                height: 90vh; /* 与容器高度匹配 */
+                border: none;
+                object-fit: contain;
+            }
+            .game-info {
+                margin-top: 1rem;
+                position: relative;
+                z-index: 1;
+                padding: 0 1rem; /* 添加左右内边距 */
+            }
+            /* 游戏控制区域样式 */
+            .game-controls {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin: 1rem;
+                padding: 0.5rem;
+                background: #f8f9fa;
+                border-radius: 0.5rem;
+                position: fixed; /* 固定到底部 */
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 10;
+            }
+            .game-controls button {
+                padding: 0.5rem 1rem;
+                background: var(--primary);
+                color: white;
+                border-radius: 0.5rem;
+                font-size: 0.875rem;
+                border: none;
+                cursor: pointer;
+            }
+            .game-controls button:hover {
+                opacity: 0.9;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-2xl font-bold text-primary">Snake Games</a>
+                <div class="hidden md:flex items-center space-x-8 pr-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-primary transition-colors">Home</a>
+                    <a href="games.html" class="text-gray-600 hover:text-primary transition-colors" data-translate="nav.games">Games</a>
+                    <a href="about.html" class="text-gray-600 hover:text-primary transition-colors" data-translate="nav.about">About</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-primary transition-colors" data-translate="nav.contact">Contact</a>
+                </div>
+                <button class="md:hidden text-gray-600" onclick="toggleMobileMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="mobile-menu hidden md:hidden mt-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="../index.html" class="text-gray-600 hover:text-primary transition-colors">Home</a>
+                    <a href="games.html" class="text-gray-600 hover:text-primary transition-colors" data-translate="nav.games">Games</a>
+                    <a href="about.html" class="text-gray-600 hover:text-primary transition-colors" data-translate="nav.about">About</a>
+                    <a href="contact.html" class="text-gray-600 hover:text-primary transition-colors" data-translate="nav.contact">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Game Content -->
+            <div id="game-container" class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <!-- Content will be loaded dynamically -->
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading" class="text-center py-8 hidden">
+                <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-primary border-t-transparent"></div>
+            </div>
+
+            <!-- Related Games -->
+            <!-- <section class="mt-12">
+                <h2 class="text-3xl font-bold mb-8" data-translate="game.relatedGames">Related Games</h2>
+                <div id="related-games" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                </div>
+            </section> -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Snake Games</h3>
+                    <p class="text-gray-400" data-translate="footer.description">The best collection of snake games online.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4" data-translate="footer.quickLinks">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="games.html" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.games">Games</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.about">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors" data-translate="nav.contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4" data-translate="footer.followUs">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Snake Games Collection. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/game-loader.js"></script>
+    <script>
+        // 等待 DOM 和脚本加载完成
+        window.addEventListener('load', function() {
+            // 初始化游戏加载器
+            new GameLoader();
+        });
+    </script>
+</body>
+</html> 

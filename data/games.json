@@ -1,0 +1,92 @@
+{
+  "games": [
+    {
+      "id": "snake-modern",
+      "title": "Modern Snake",
+      "title_zh": "现代贪吃蛇",
+      "description": "Test your skills in the Google Snake game! Control the snake, guiding it to gobble up items that make it grow. Use the arrow keys to move, but watch out—the longer the snake gets, the trickier it is to avoid hitting walls and its own body. Aim to extend the snake as far as possible and rack up high scores without crashing",
+      "description_zh": "经典贪吃蛇的现代版本，加入了能量道具、特效和富有挑战性的障碍物。",
+      "thumbnail": "../assets/images/snake-modern1.png",
+      "iframeUrl": "https://snakegame.org/",
+      "category": "modern",
+      "tags": ["modern", "power-ups", "single-player"],
+      "tags_zh": ["现代", "能量道具", "单人"],
+      "difficulty": "medium",
+      "difficulty_zh": "中等",
+      "createdAt": "2024-03-20",
+      "metaDescription": "Experience the classic snake game with modern graphics and special effects.",
+      "metaDescription_zh": "体验具有现代图形和特效的经典贪吃蛇游戏。",
+      "metaKeywords": "modern snake, snake game, browser game, online game",
+      "metaKeywords_zh": "现代贪吃蛇,贪吃蛇游戏,浏览器游戏,在线游戏",
+      "instructions": [
+        
+      ]
+    },
+    {
+      "id": "snake-classic",
+      "title": "Classic Snake",
+      "title_zh": "经典贪吃蛇",
+      "description": "Slither your way through a maze with Snake Online. Your mission is to eat all the apples you can find without biting your own tail. As this sneaky snake grows, so does the challenge. Each apple makes it longer and you smarter!",
+      "description_zh": "",
+      "thumbnail": "../assets/images/snake-lg.jpg",
+      "iframeUrl": "https://cloud.onlinegames.io/games/2024/phaser/snake/index-og.html",
+      "category": "classic",
+      "tags": ["classic", "retro", "single-player"],
+      "tags_zh": ["经典", "复古", "单人"],
+      "difficulty": "easy",
+      "difficulty_zh": "简单",
+      "createdAt": "2024-03-20",
+      "metaDescription": "Play the classic snake game online. Control the snake, eat food, and grow longer without hitting obstacles.",
+      "metaDescription_zh": "在线玩经典贪吃蛇游戏。控制蛇吃食物并变长，注意避开障碍物。",
+      "metaKeywords": "snake game, classic snake, browser game, online game",
+      "metaKeywords_zh": "贪吃蛇,经典游戏,浏览器游戏,在线游戏",
+      "instructions": [
+        {
+          "en": "Choose your mode. Go solo or grab a buddy for some head-to-head slithering action",
+          "zh": ""
+        },
+        {
+          "en": "Single Player: Guide the snake to the apples. The more apples, the longer the snake gets, and the higher your score. Speed boosts can be your friend or your doom!",
+          "zh": ""
+        },
+        {
+          "en": "Two Player: Race against your friend to see who can grow the longest snake or who can make the other crash first. It's survival of the sneakiest.",
+          "zh": ""
+        }
+      ]
+    },
+    {
+      "id": "classic-snakegame",
+      "title": "Snake Classic",
+      "title_zh": "",
+      "description": "Snake Classic: A modern twist on the nostalgic snake game. Navigate your snake through six unique modes: Classic, Box, Tunnel, Mill, Condo, and Rail. Collect fruits and gems, customize your snake with skins, and enjoy multi-language support. Compete on personal leaderboards and play on both PC and mobile. Fun and engaging for all ages!",
+      "description_zh": "",
+      "thumbnail": "../assets/images/snake_classic.jpg",
+      "iframeUrl": "https://html5.gamedistribution.com/2609b48eea7d40ebb414a1211dfed2af/",
+      "category": "multiplayer",
+      "tags": ["arcade", "classic", "singleplayer"],
+      "tags_zh": [],
+      "difficulty": "hard",
+      "difficulty_zh": "困难",
+      "createdAt": "2024-03-20",
+      "metaDescription": "Play snake with friends in this exciting multiplayer version. Compete to be the longest snake!",
+      "metaDescription_zh": "在这个刺激的多人版本中与朋友一起玩贪吃蛇。比比看谁的蛇最长！",
+      "metaKeywords": "multiplayer snake, snake game, browser game, online game",
+      "metaKeywords_zh": "多人贪吃蛇,贪吃蛇游戏,浏览器游戏,在线游戏",
+      "instructions": [
+        {
+          "en": "Control your snake to collect fruit and gems while avoiding collisions with walls and your own tail",
+          "zh": "玩家1：使用WASD键控制移动"
+        },
+        {
+          "en": "PC Controls: Movement: Use the WASD keys or Arrow keys to control the direction of the snake. Mouse Control: Swipe with your mouse in the direction you want the snake to move",
+          "zh": "玩家2：使用方向键控制移动"
+        },
+        {
+          "en": "Mobile Controls: Swipe: Swipe up, down, left, or right on the screen to control the direction of the snake",
+          "zh": "比赛谁的蛇更长"
+        }
+      ]
+    }
+  ]
+} 
