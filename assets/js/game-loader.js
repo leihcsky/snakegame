@@ -315,6 +315,7 @@ window.GameLoader = class {
             this.loadRelatedGames(game.category, gameId);
 
         } catch (error) {
+            
             console.error('Error loading game detail:', error);
             this.showError('Failed to load game details');
         }
