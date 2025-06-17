@@ -6,6 +6,7 @@ window.GameLoader = class {
         this.basePath = this.getBasePath();
         this.isLoading = false;
         this.filteredGames = [];
+        this.isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
         this.addFullscreenButtonStyles();
         this.init(); // 改用 init 方法来初始化
     }
@@ -13,9 +14,9 @@ window.GameLoader = class {
     async init() {
         await this.loadGames(); // 等待游戏数据加载完成
         // 根据当前页面类型加载不同的内容
-        if (window.location.pathname.includes('game-detail.html')) {
+        if (window.location.pathname.includes('game-detail')) {
             this.loadGameDetail();
-        } else if (window.location.pathname.includes('games.html')) {
+        } else if (window.location.pathname.includes('games')) {
             this.loadGamesList();
         } else {
             this.renderFeaturedGames();
@@ -25,6 +26,16 @@ window.GameLoader = class {
     getBasePath() {
         const path = window.location.pathname;
         return path.includes('/pages/') ? '..' : '.';
+    }
+
+    // 添加一个辅助方法来处理页面路径
+    getPagePath(pageName, params = {}) {
+        const extension = this.isLocalhost ? '.html' : '';
+        const baseUrl = `${this.basePath}/pages/${pageName}${extension}`;
+        const queryString = Object.entries(params)
+            .map(([key, value]) => `${key}=${value}`)
+            .join('&');
+        return queryString ? `${baseUrl}?${queryString}` : baseUrl;
     }
 
     async loadGames() {
@@ -147,7 +158,7 @@ window.GameLoader = class {
         
         // 修正图片路径和游戏详情页链接
         const thumbnailPath = game.thumbnail.startsWith('/') ? game.thumbnail : `${this.basePath}/${game.thumbnail.replace(/^\.\.\//, '')}`;
-        const detailPath = `${this.basePath}/pages/game-detail.html?id=${game.id}`;
+        const detailPath = this.getPagePath('game-detail', { id: game.id });
 
         return `
             <div class="bg-white rounded-lg shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 flex flex-col h-full max-w-sm mx-auto">
@@ -385,15 +396,13 @@ window.GameLoader = class {
 
         // Update container content
         relatedGamesContainer.innerHTML = relatedGames.length ? relatedGames.map(game => `
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                <img src="${game.thumbnail}" alt="${game.title}" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h3 class="text-xl font-semibold mb-2">${game.title}</h3>
-                    <p class="text-gray-600 mb-4">${game.description.substring(0, 100)}...</p>
-                    <a href="game-detail.html?id=${game.id}" class="inline-block bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
-                        Play Now
-                    </a>
-                </div>
+            <div class="bg-white rounded-lg shadow-sm p-4 hover:shadow-md transition-shadow">
+                <img src="${this.basePath}/${game.thumbnail}" alt="${game.title}" class="w-full h-32 object-cover rounded mb-4">
+                <h3 class="text-lg font-semibold mb-2">${game.title}</h3>
+                <p class="text-gray-600 text-sm mb-4 line-clamp-2">${game.description}</p>
+                <a href="${this.getPagePath('game-detail', { id: game.id })}" class="inline-block bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+                    ${this.currentLanguage === 'zh' ? '开始游戏' : 'Play Now'}
+                </a>
             </div>
         `).join('') : '<p class="text-gray-500">No related games found.</p>';
     }
